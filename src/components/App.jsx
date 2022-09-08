@@ -1,8 +1,8 @@
 import { Component } from 'react';
-import { FeedbackOptions } from './FeedbackOptions/FeedbackOptions';
-import { Section } from './Section/Section';
-import { Statistics } from './Statistics/Statistics';
-import { Notification } from './Notification/Notification';
+import { FeedbackOptions } from './FeedbackOptions/';
+import { Section } from './Section/';
+import { Statistics } from './Statistics/';
+import { Notification } from './Notification/';
 
 export class App extends Component {
   state = {
@@ -25,6 +25,7 @@ export class App extends Component {
   }
 
   render() {
+    const { good, bad, neutral } = this.state;
     return (
       <div
         style={{
@@ -47,9 +48,9 @@ export class App extends Component {
         <Section title="Statistics">
           {this.countTotalReviews() > 0 ? (
             <Statistics
-              goodReviews={this.state.good}
-              neutralReviews={this.state.neutral}
-              badReviews={this.state.bad}
+              goodReviews={good}
+              neutralReviews={neutral}
+              badReviews={bad}
               totalReviews={this.countTotalReviews()}
               positiveReviewsPercentage={this.countPositiveReviewsPercentage()}
             ></Statistics>

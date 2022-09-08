@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Button } from './FeedbackOptions.styled';
 
 export const FeedbackOptions = ({ reviewOptions, addReview }) => {
@@ -6,4 +7,9 @@ export const FeedbackOptions = ({ reviewOptions, addReview }) => {
       {option}
     </Button>
   ));
+};
+
+FeedbackOptions.propTypes = {
+  reviewOptions: PropTypes.arrayOf(PropTypes.string).isRequired,
+  addReview: PropTypes.func.isRequired,
 };

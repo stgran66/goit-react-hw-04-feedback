@@ -1,4 +1,6 @@
+import PropTypes from 'prop-types';
 import { StyledSection } from './Section.styled';
+
 export const Section = ({ title, children }) => {
   return (
     <StyledSection>
@@ -6,4 +8,9 @@ export const Section = ({ title, children }) => {
       <div>{children}</div>
     </StyledSection>
   );
+};
+
+Section.propTypes = {
+  title: PropTypes.string,
+  children: PropTypes.node,
 };
