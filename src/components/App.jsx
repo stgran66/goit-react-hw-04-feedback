@@ -56,10 +56,7 @@ export const App = () => {
       }}
     >
       <Section title="Please leave your feedback">
-        <FeedbackOptions
-          options={reviewOptions}
-          onLeaveFeedback={addReview}
-        ></FeedbackOptions>
+        <FeedbackOptions options={reviewOptions} onLeaveFeedback={addReview} />
       </Section>
 
       <Section title="Statistics">
@@ -70,9 +67,9 @@ export const App = () => {
             badReviews={bad}
             totalReviews={total}
             positiveReviewsPercentage={positivePercentage}
-          ></Statistics>
+          />
         ) : (
-          <Notification message="There is no feedback yet"></Notification>
+          <Notification message="There is no feedback yet" />
         )}
       </Section>
     </div>
