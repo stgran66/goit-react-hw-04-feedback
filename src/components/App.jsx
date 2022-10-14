@@ -40,8 +40,8 @@ export class App extends Component {
       >
         <Section title="Please leave your feedback">
           <FeedbackOptions
-            reviewOptions={Object.keys(this.state)}
-            addReview={this.addReview}
+            options={Object.keys(this.state)}
+            onLeaveFeedback={this.addReview}
           ></FeedbackOptions>
         </Section>
 
