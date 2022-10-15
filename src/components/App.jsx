@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { FeedbackOptions } from './FeedbackOptions/';
 import { Section } from './Section/';
 import { Statistics } from './Statistics/';
@@ -8,10 +8,11 @@ export const App = () => {
   const [good, setGood] = useState(0);
   const [neutral, setNeutral] = useState(0);
   const [bad, setBad] = useState(0);
-  const [total, setTotal] = useState(0);
-  const [positivePercentage, setPositivePercentage] = useState(0);
 
   const reviewOptions = ['good', 'neutral', 'bad'];
+
+  const totalReviews = useRef(0);
+  const positiveReviews = useRef(0);
 
   const addReview = e => {
     const key = e.currentTarget.name;
@@ -36,12 +37,14 @@ export const App = () => {
   };
 
   useEffect(() => {
-    setTotal(good + neutral + bad);
+    totalReviews.current = good + neutral + bad;
   }, [good, neutral, bad]);
 
   useEffect(() => {
-    setPositivePercentage(parseInt((good / total) * 100));
-  }, [good, total]);
+    positiveReviews.current = parseInt(
+      Number(good / totalReviews.current) * 100
+    );
+  }, [good, neutral, bad]);
 
   return (
     <div
@@ -60,13 +63,13 @@ export const App = () => {
       </Section>
 
       <Section title="Statistics">
-        {total > 0 ? (
+        {good + neutral + bad > 0 ? (
           <Statistics
             goodReviews={good}
             neutralReviews={neutral}
             badReviews={bad}
-            totalReviews={total}
-            positiveReviewsPercentage={positivePercentage}
+            totalReviews={totalReviews.current}
+            positiveReviewsPercentage={positiveReviews.current}
           />
         ) : (
           <Notification message="There is no feedback yet" />
